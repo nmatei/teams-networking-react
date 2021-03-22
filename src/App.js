@@ -30,6 +30,25 @@ class App extends Component {
         });
       });
   }
+
+  add(team) {
+    console.warn('team', team);
+
+    fetch("http://localhost:3000/teams-json/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(team)
+    })
+      .then(res => res.json())
+      .then(r => {
+        console.warn(r);
+        if (r.success) {
+          this.load();
+        }
+      });
+  }
   
   render() {
     console.debug(this.state.teams);
@@ -37,7 +56,9 @@ class App extends Component {
       <div>
         <h1>Teams Networking</h1>
         <div>Search</div>
-        <TeamsTable teams={this.state.teams} border={1} />
+        <TeamsTable teams={this.state.teams} border={1} onSubmit={team => {
+          this.add(team);
+        }} />
         <div>{this.state.date}</div>
       </div>
     );
