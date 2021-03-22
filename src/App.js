@@ -12,31 +12,23 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.warn('mount');
-
     setInterval(() => {
       this.setState({
         date: new Date().toString()
       })
     }, 60000);
 
-    setTimeout(() => {
-      console.warn("loaded");
-      this.setState({
-        teams: [
-          {
-            "name": "CV",
-            "members": "Nicolae Matei",
-            "url": "https://github.com/nmatei/nmatei2.github.io"
-          },
-          {
-            "name": "teams-networking",
-            "members": "Nicolae Matei",
-            "url": "https://github.com/nmatei/teams-networking/tree/won2"
-          }
-        ]
-      })
-    }, 2000);
+    this.load();
+  }
+
+  load() {
+    fetch("http://localhost:3000/teams-json")
+      .then(res => res.json())
+      .then(teams => {
+        this.setState({
+          teams
+        });
+      });
   }
   
   render() {
