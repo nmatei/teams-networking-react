@@ -33,6 +33,7 @@ class App extends Component {
 
   add(team) {
     console.warn('team', team);
+    document.getElementById('main-form').reset();
 
     fetch("http://localhost:3000/teams-json/create", {
       method: "POST",
@@ -45,9 +46,26 @@ class App extends Component {
       .then(r => {
         console.warn(r);
         if (r.success) {
-          this.load();
+          team.id = r.id;
+          const teams = this.state.teams.concat(team);
+          this.setState({
+            teams
+          });
+          //this.load();
         }
       });
+  }
+
+  remove(id) {
+    fetch("http://localhost:3000/teams-json/delete", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ id })
+    }).then(r => r.json()).then(status => {
+      this.load();
+    });
   }
   
   render() {
@@ -56,9 +74,16 @@ class App extends Component {
       <div>
         <h1>Teams Networking</h1>
         <div>Search</div>
-        <TeamsTable teams={this.state.teams} border={1} onSubmit={team => {
-          this.add(team);
-        }} />
+        <TeamsTable 
+          teams={this.state.teams}
+          border={1}
+          onSubmit={team => {
+            this.add(team);
+          }}
+          onDelete={id => {
+            this.remove(id);
+          }}
+        />
         <div>{this.state.date}</div>
       </div>
     );
