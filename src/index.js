@@ -5,49 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
-
-
-const teams = (state = [], action) => {
-  switch (action.type) {
-    case 'TEAMS_LOADED': {
-      return action.teams
-    }
-    case 'TEAM_ADDED': {
-      return [...state, action.team];
-    }
-    case 'TEAM_REMOVED': {
-      return state.filter(team => team.id !== action.id);
-    }
-    default:
-      return state;
-  }
-};
-
-const count = (state = 0, action) => {
-  switch (action.type) {
-    case 'TEAMS_LOADED': {
-      return action.teams.length
-    }
-    case 'TEAM_ADDED': {
-      return state + 1;
-    }
-    case 'TEAM_REMOVED': {
-      return state - 1;
-    }
-    default:
-      return state;
-  }
-};
-
-const filter = (state = '', action) => {
-  switch (action.type) {
-    case 'FILTER_CHANGED': {
-      return action.filter
-    }
-    default:
-      return state;
-  }
-};
+import { teams } from './teams/reducer';
+import { filter, count } from './filter/reducer';
 
 const rootReducer = combineReducers({
   teams,
