@@ -10,7 +10,6 @@ class App extends Component {
       teams: [],
       date: new Date().toString()
     }
-    console.warn('props', props);
   }
 
   componentDidMount() {
@@ -43,11 +42,10 @@ class App extends Component {
         console.warn(r);
         if (r.success) {
           team.id = r.id;
-          const teams = this.state.teams.concat(team);
-          this.setState({
-            teams
-          });
-          //this.load();
+          this.props.dispatch({
+            type: 'TEAM_ADDED',
+            team
+          })
         }
       });
   }
@@ -85,12 +83,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  console.info('map state to props', state);
-  return {
-    teams: state.teams
-  }
-};
+const mapStateToProps = state => ({
+  teams: state.teams
+});
 
 const AppContainer = connect(mapStateToProps)(App);
 

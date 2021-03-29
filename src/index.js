@@ -14,6 +14,11 @@ const rootReducer = (state = { teams: [] }, action) => {
         teams: action.teams
       }
     }
+    case 'TEAM_ADDED': {
+      return {
+        teams: state.teams.concat(action.team)
+      };
+    }
     default:
       return state;
   }
