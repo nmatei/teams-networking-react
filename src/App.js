@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import './App.css';
 import { TeamsTable } from "./TeamsTable";
+import { FilterContainer } from "./filter";
 
 class App extends Component {
   constructor(props) {
@@ -58,12 +59,16 @@ class App extends Component {
   }
   
   render() {
+    const f = this.props.filter;
+    const teams = this.props.teams.filter(team => team.members.toLowerCase().indexOf(f) > -1);
     return (
       <div>
         <h1>Teams Networking</h1>
-        <div>Search</div>
+        <div>
+          <FilterContainer />
+        </div>
         <TeamsTable 
-          teams={this.props.teams}
+          teams={teams}
           border={1}
           onSubmit={team => {
             this.add(team);
@@ -79,7 +84,8 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  teams: state.teams
+  teams: state.teams,
+  filter: state.filter
 });
 const mapDispatchToProps = dispatch => ({
   onAdd: team => dispatch({ type: 'TEAM_ADDED', team }),

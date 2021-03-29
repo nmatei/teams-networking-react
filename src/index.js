@@ -3,33 +3,58 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from 'redux';
+import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-const rootReducer = (state = { filter: '', teams: [] }, action) => {
-  console.warn('rootReducer', state, action);
-  switch (action.type){
+
+const teams = (state = [], action) => {
+  console.warn('teams', state, action);
+  switch (action.type) {
     case 'TEAMS_LOADED': {
-      return {
-        ...state,
-        teams: action.teams
-      }
+      return action.teams
     }
     case 'TEAM_ADDED': {
-      return {
-        ...state,
-        teams: [...state.teams, action.team]
-      };
+      return [...state, action.team];
     }
     case 'TEAM_REMOVED': {
-      return {
-        teams: state.teams.filter(team => team.id != action.id)
-      };
+      return state.filter(team => team.id != action.id);
     }
     default:
       return state;
   }
 };
+
+const count = (state = 0, action) => {
+  switch (action.type) {
+    case 'TEAMS_LOADED': {
+      return action.teams.length
+    }
+    case 'TEAM_ADDED': {
+      return state + 1;
+    }
+    case 'TEAM_REMOVED': {
+      return state - 1;
+    }
+    default:
+      return state;
+  }
+};
+
+const filter = (state = '', action) => {
+  switch (action.type) {
+    case 'FILTER_CHANGED': {
+      return action.filter
+    }
+    default:
+      return state;
+  }
+};
+
+const rootReducer = combineReducers({
+  teams,
+  count,
+  filter
+});
 
 const store = createStore(rootReducer);
 console.warn('store', store);
