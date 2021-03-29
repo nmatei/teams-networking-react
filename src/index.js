@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { combineReducers, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 
@@ -56,21 +56,27 @@ const rootReducer = combineReducers({
   filter
 });
 
-const store = createStore(rootReducer);
+// used for async actions
+const teamsMdl = store => next => action => {
+  console.info('middleare', action, store.getState());
+  switch(action.type) {
+    case 'TEAMS_LOAD': {
+      fetch("http://localhost:3000/teams-json")
+        .then(res => res.json())
+        .then(teams => {
+          store.dispatch({ type: 'TEAMS_LOADED', teams });
+        });
+    }
+  }
+  return next(action);
+};
+
+const store = createStore(rootReducer, applyMiddleware(teamsMdl));
 console.warn('store', store);
 
 store.subscribe(() => {
   console.warn('data changed', store.getState());
 })
-
-function load() {
-  fetch("http://localhost:3000/teams-json")
-    .then(res => res.json())
-    .then(teams => {
-      store.dispatch({ type: 'TEAMS_LOADED', teams });
-    });
-}
-load();
 
 ReactDOM.render(
   <Provider store={store}>

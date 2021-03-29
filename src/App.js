@@ -19,11 +19,7 @@ class App extends Component {
       })
     }, 60000);
 
-    this.load();
-  }
-
-  load() {
-    
+    this.props.onLoad();
   }
 
   add(team) {
@@ -88,6 +84,7 @@ const mapStateToProps = state => ({
   filter: state.filter
 });
 const mapDispatchToProps = dispatch => ({
+  onLoad: () => dispatch({ type: 'TEAMS_LOAD' }),
   onAdd: team => dispatch({ type: 'TEAM_ADDED', team }),
   onDelete: id => dispatch({type: 'TEAM_REMOVED', id})
 });
