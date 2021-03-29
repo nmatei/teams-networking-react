@@ -42,10 +42,7 @@ class App extends Component {
         console.warn(r);
         if (r.success) {
           team.id = r.id;
-          this.props.dispatch({
-            type: 'TEAM_ADDED',
-            team
-          })
+          this.props.onAdd(team);
         }
       });
   }
@@ -58,7 +55,7 @@ class App extends Component {
       },
       body: JSON.stringify({ id })
     }).then(r => r.json()).then(status => {
-      this.load();
+      this.props.onDelete(id);
     });
   }
   
@@ -86,7 +83,14 @@ class App extends Component {
 const mapStateToProps = state => ({
   teams: state.teams
 });
+const mapDispatchToProps = dispatch => ({
+  onAdd: (team) => {
+    console.warn('on add team', team);
+    dispatch({ type: 'TEAM_ADDED', team })
+  },
+  onDelete: id => dispatch({type: 'TEAM_REMOVED', id})
+});
 
-const AppContainer = connect(mapStateToProps)(App);
+const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
 
 export default AppContainer;
