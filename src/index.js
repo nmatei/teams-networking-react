@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 
 
 const teams = (state = [], action) => {
-  console.warn('teams', state, action);
   switch (action.type) {
     case 'TEAMS_LOADED': {
       return action.teams
@@ -58,7 +57,6 @@ const rootReducer = combineReducers({
 
 // used for async actions
 const teamsMdl = store => next => action => {
-  console.info('middleare', action, store.getState());
   switch(action.type) {
     case 'TEAMS_LOAD': {
       fetch("http://localhost:3000/teams-json")
@@ -79,7 +77,6 @@ const teamsMdl = store => next => action => {
       })
         .then(res => res.json())
         .then(r => {
-          console.warn(r);
           if (r.success) {
             team.id = r.id;
             store.dispatch({ type: 'TEAM_ADDED', team });
@@ -99,16 +96,13 @@ const teamsMdl = store => next => action => {
       });
       break;
     }
+    default: 
+      break;
   }
   return next(action);
 };
 
 const store = createStore(rootReducer, applyMiddleware(teamsMdl));
-console.warn('store', store);
-
-store.subscribe(() => {
-  console.warn('data changed', store.getState());
-})
 
 ReactDOM.render(
   <Provider store={store}>
