@@ -7,7 +7,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      teams: [],
       date: new Date().toString()
     }
   }
@@ -27,7 +26,6 @@ class App extends Component {
   }
 
   add(team) {
-    console.warn('team', team);
     document.getElementById('main-form').reset();
 
     fetch("http://localhost:3000/teams-json/create", {
@@ -84,10 +82,7 @@ const mapStateToProps = state => ({
   teams: state.teams
 });
 const mapDispatchToProps = dispatch => ({
-  onAdd: (team) => {
-    console.warn('on add team', team);
-    dispatch({ type: 'TEAM_ADDED', team })
-  },
+  onAdd: team => dispatch({ type: 'TEAM_ADDED', team }),
   onDelete: id => dispatch({type: 'TEAM_REMOVED', id})
 });
 
