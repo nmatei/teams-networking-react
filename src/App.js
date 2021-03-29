@@ -24,34 +24,7 @@ class App extends Component {
 
   add(team) {
     document.getElementById('main-form').reset();
-
-    fetch("http://localhost:3000/teams-json/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(team)
-    })
-      .then(res => res.json())
-      .then(r => {
-        console.warn(r);
-        if (r.success) {
-          team.id = r.id;
-          this.props.onAdd(team);
-        }
-      });
-  }
-
-  remove(id) {
-    fetch("http://localhost:3000/teams-json/delete", {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ id })
-    }).then(r => r.json()).then(status => {
-      this.props.onDelete(id);
-    });
+    this.props.onAdd(team);
   }
   
   render() {
@@ -70,7 +43,7 @@ class App extends Component {
             this.add(team);
           }}
           onDelete={id => {
-            this.remove(id);
+            this.props.onDelete(id);
           }}
         />
         <div>{this.state.date}</div>
@@ -85,8 +58,8 @@ const mapStateToProps = state => ({
 });
 const mapDispatchToProps = dispatch => ({
   onLoad: () => dispatch({ type: 'TEAMS_LOAD' }),
-  onAdd: team => dispatch({ type: 'TEAM_ADDED', team }),
-  onDelete: id => dispatch({type: 'TEAM_REMOVED', id})
+  onAdd: team => dispatch({ type: 'TEAM_ADD', team }),
+  onDelete: id => dispatch({type: 'TEAM_REMOVE', id})
 });
 
 const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);

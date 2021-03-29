@@ -17,7 +17,7 @@ const teams = (state = [], action) => {
       return [...state, action.team];
     }
     case 'TEAM_REMOVED': {
-      return state.filter(team => team.id != action.id);
+      return state.filter(team => team.id !== action.id);
     }
     default:
       return state;
@@ -66,6 +66,38 @@ const teamsMdl = store => next => action => {
         .then(teams => {
           store.dispatch({ type: 'TEAMS_LOADED', teams });
         });
+      break;
+    }
+    case 'TEAM_ADD': {
+      const team = action.team;
+      fetch("http://localhost:3000/teams-json/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(team)
+      })
+        .then(res => res.json())
+        .then(r => {
+          console.warn(r);
+          if (r.success) {
+            team.id = r.id;
+            store.dispatch({ type: 'TEAM_ADDED', team });
+          }
+        });
+      break;
+    }
+    case 'TEAM_REMOVE': {
+      fetch("http://localhost:3000/teams-json/delete", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ id: action.id })
+      }).then(r => r.json()).then(status => {
+        store.dispatch({ type: 'TEAM_REMOVED', id: action.id })
+      });
+      break;
     }
   }
   return next(action);
