@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import { TeamsTable } from "./TeamsTable";
 
@@ -9,6 +10,7 @@ class App extends Component {
       teams: [],
       date: new Date().toString()
     }
+    console.warn('props', props);
   }
 
   componentDidMount() {
@@ -22,13 +24,7 @@ class App extends Component {
   }
 
   load() {
-    fetch("http://localhost:3000/teams-json")
-      .then(res => res.json())
-      .then(teams => {
-        this.setState({
-          teams
-        });
-      });
+    
   }
 
   add(team) {
@@ -69,13 +65,12 @@ class App extends Component {
   }
   
   render() {
-    console.debug(this.state.teams);
     return (
       <div>
         <h1>Teams Networking</h1>
         <div>Search</div>
         <TeamsTable 
-          teams={this.state.teams}
+          teams={this.props.teams}
           border={1}
           onSubmit={team => {
             this.add(team);
@@ -90,4 +85,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.info('map state to props', state);
+  return {
+    teams: state.teams
+  }
+};
+
+const AppContainer = connect(mapStateToProps)(App);
+
+export default AppContainer;
