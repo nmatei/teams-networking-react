@@ -1,8 +1,11 @@
-import React from "react";
+// import React from "react";
+import React, { useState } from "react";
 import logo from "./logo.svg";
 import selfie from "./images/selfie.jpg";
 import colorblind from "./images/colorblind.png";
 import "./App.css";
+import "./loading.css";
+import { TeamsTableComponent } from "./teams/TeamsTable";
 
 function MainMenu() {
   return (
@@ -60,7 +63,7 @@ function SideMenu() {
         <h2>Rubik face challange</h2>
         <form action="" id="rubikChallange">
           <div className="top-toolbar">
-            <input type="number" name="size" value="3" min="1" max="10" required />
+            <input type="number" name="size" min="1" max="10" required />
             <button className="scrambleFace" type="submit">
               🔃 Scramble
             </button>
@@ -155,8 +158,24 @@ function ContentWrapper() {
   return (
     <section id="content">
       <SideMenu />
-      <div id="main">... TODO ...</div>
+      <div id="main">
+        <Example />
+        <TeamsTableComponent />
+        <Example></Example>
+      </div>
     </section>
+  );
+}
+
+function Example() {
+  // Declare a new state variable, which we'll call "count"
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
   );
 }
 
