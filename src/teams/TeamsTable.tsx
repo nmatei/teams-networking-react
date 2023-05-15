@@ -1,6 +1,20 @@
 import "./style.css";
 
-export function TeamsTable(props) {
+type Team = {
+  id: string;
+  name: string;
+  promotion: string;
+  url: string;
+  members: string;
+};
+
+type Props = {
+  loading: boolean;
+  teams: Team[];
+};
+
+export function TeamsTable(props: Props) {
+  console.warn("props", props);
   return (
     <form id="editForm" action="" method="post" className={props.loading ? "loading-mask" : ""}>
       <table>
@@ -100,7 +114,7 @@ export function TeamsTableWrapper() {
   ];
 
   // return TeamsTable({
-  //   teams: teams
+  //   teams: teams, loading: true
   // });
   return (
     <>
