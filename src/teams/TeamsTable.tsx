@@ -203,7 +203,7 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
     console.info("change loading", teams);
     this.setState({
       loading: false,
-      teams: teams
+      teams: teams || []
     });
   }
 
