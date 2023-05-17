@@ -222,9 +222,8 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
         loading={this.state.loading}
         team={this.state.team}
         deleteTeam={async id => {
-          console.warn("TODO pls remove this team", id);
-          const status = await deleteTeamRequest(id);
-          console.warn("status", status);
+          const { success } = await deleteTeamRequest(id);
+          console.warn("deleted", success);
           this.loadTeams();
         }}
         save={async () => {
