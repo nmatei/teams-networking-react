@@ -4,18 +4,12 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
-function LocalTime() {
-  return <span>It is {new Date().toLocaleTimeString()}.</span>;
-}
-
 // then use it as a simple html ta
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
-    <div>
-      <LocalTime />
-    </div>
+    <App />
   </React.StrictMode>
 );
 
