@@ -50,37 +50,7 @@ function MainMenu() {
 function ContentWrapper() {
   return (
     <section id="content">
-      <div id="side-menu">
-        <section>
-          <h2>Contact Form</h2>
-          <form action="images/seflie.jpg" method="post">
-            <label htmlFor="contact-email">Email</label>
-            <input type="email" name="email" id="contact-email" required placeholder="hr@company.com" />
-            <br />
-            <label htmlFor="contact-name">Name</label>
-            <input type="text" name="name" id="contact-name" required placeholder="Enter your Name" />
-            <br />
-            <label htmlFor="contact-reason">Reason</label>
-            <input type="text" name="reason" id="contact-reason" required placeholder="Reason for contacting me" />
-            <br />
-            <button type="submit">Contact Us</button>
-          </form>
-        </section>
-        <section>
-          <h2>Rubik's Face</h2>
-          <div className="rubik-face">
-            <div style={{ background: "#0082df" }}></div>
-            <div style={{ background: "#ffff00" }}></div>
-            <div style={{ background: "#ff2c0a" }}></div>
-            <div style={{ background: "#ffff00" }}></div>
-            <div style={{ background: "#ff2c0a" }}></div>
-            <div style={{ background: "#0082df" }}></div>
-            <div style={{ background: "#ff2c0a" }}></div>
-            <div style={{ background: "#0082df" }}></div>
-            <div style={{ background: "#ffff00" }}></div>
-          </div>
-        </section>
-      </div>
+      <SideMenu />
       <div id="main">
         <div className="page" id="home">
           <h2>Home</h2>
@@ -109,27 +79,69 @@ function ContentWrapper() {
 
         <div className="page" id="languages">
           <h2>Known Languages</h2>
-          <table border={1}>
-            <thead>
-              <tr>
-                <th>Language</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Romanian</td>
-                <td>Native</td>
-              </tr>
-              <tr>
-                <td>English</td>
-                <td>Professional</td>
-              </tr>
-            </tbody>
-          </table>
+          <KnowLanguagesTable />
         </div>
       </div>
     </section>
+  );
+}
+
+function KnowLanguagesTable() {
+  return (
+    <table border={1}>
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Romanian</td>
+          <td>Native</td>
+        </tr>
+        <tr>
+          <td>English</td>
+          <td>Professional</td>
+        </tr>
+      </tbody>
+    </table>
+  );
+}
+
+function SideMenu() {
+  return (
+    <div id="side-menu">
+      <section>
+        <h2>Contact Form</h2>
+        <form action="images/seflie.jpg" method="post">
+          <label htmlFor="contact-email">Email</label>
+          <input type="email" name="email" id="contact-email" required placeholder="hr@company.com" />
+          <br />
+          <label htmlFor="contact-name">Name</label>
+          <input type="text" name="name" id="contact-name" required placeholder="Enter your Name" />
+          <br />
+          <label htmlFor="contact-reason">Reason</label>
+          <input type="text" name="reason" id="contact-reason" required placeholder="Reason for contacting me" />
+          <br />
+          <button type="submit">Contact Us</button>
+        </form>
+      </section>
+      <section>
+        <h2>Rubik's Face</h2>
+        <div className="rubik-face">
+          <div style={{ background: "#0082df" }}></div>
+          <div style={{ background: "#ffff00" }}></div>
+          <div style={{ background: "#ff2c0a" }}></div>
+          <div style={{ background: "#ffff00" }}></div>
+          <div style={{ background: "#ff2c0a" }}></div>
+          <div style={{ background: "#0082df" }}></div>
+          <div style={{ background: "#ff2c0a" }}></div>
+          <div style={{ background: "#0082df" }}></div>
+          <div style={{ background: "#ffff00" }}></div>
+        </div>
+      </section>
+    </div>
   );
 }
 
