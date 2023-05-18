@@ -129,18 +129,24 @@ function SideMenu() {
       </section>
       <section>
         <h2>Rubik's Face</h2>
-        <div className="rubik-face">
-          <div style={{ background: "#0082df" }}></div>
-          <div style={{ background: "#ffff00" }}></div>
-          <div style={{ background: "#ff2c0a" }}></div>
-          <div style={{ background: "#ffff00" }}></div>
-          <div style={{ background: "#ff2c0a" }}></div>
-          <div style={{ background: "#0082df" }}></div>
-          <div style={{ background: "#ff2c0a" }}></div>
-          <div style={{ background: "#0082df" }}></div>
-          <div style={{ background: "#ffff00" }}></div>
-        </div>
+        <RubikCube />
       </section>
+    </div>
+  );
+}
+
+function RubikCube() {
+  return (
+    <div className="rubik-face">
+      <div style={{ background: "#0082df" }}></div>
+      <div style={{ background: "#ffff00" }}></div>
+      <div style={{ background: "#ff2c0a" }}></div>
+      <div style={{ background: "#ffff00" }}></div>
+      <div style={{ background: "#ff2c0a" }}></div>
+      <div style={{ background: "#0082df" }}></div>
+      <div style={{ background: "#ff2c0a" }}></div>
+      <div style={{ background: "#0082df" }}></div>
+      <div style={{ background: "#ffff00" }}></div>
     </div>
   );
 }
