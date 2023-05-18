@@ -138,11 +138,11 @@ function AppFooter() {
 
 function App() {
   return (
-    <div>
+    <>
       <AppHeader />
       <ContentWrapper />
       <AppFooter />
-    </div>
+    </>
   );
 }
 
