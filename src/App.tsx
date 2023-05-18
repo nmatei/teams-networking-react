@@ -2,6 +2,8 @@ import React from "react";
 import logo from "./logo.svg";
 import selfie from "./images/seflie.jpg";
 import "./App.css";
+import MainMenu from "./menu/MainMenu";
+import { AppFooter } from "./footer/components";
 
 function AppHeader() {
   return (
@@ -17,33 +19,6 @@ function AppHeader() {
       </div>
       <MainMenu />
     </header>
-  );
-}
-
-function MainMenu() {
-  return (
-    <ul id="top-menu-bar">
-      <li>
-        <a href="#" data-page="home">
-          Home
-        </a>
-      </li>
-      <li>
-        <a href="#" data-page="skills">
-          Skills
-        </a>
-      </li>
-      <li>
-        <a href="#" data-page="projects">
-          Projects
-        </a>
-      </li>
-      <li>
-        <a href="#" data-page="languages">
-          Languages
-        </a>
-      </li>
-    </ul>
   );
 }
 
@@ -148,14 +123,6 @@ function RubikCube() {
       <div style={{ background: "#0082df" }}></div>
       <div style={{ background: "#ffff00" }}></div>
     </div>
-  );
-}
-
-function AppFooter() {
-  return (
-    <footer>
-      <a href="https://www.linkedin.com/in/nicolaematei">LinkedIn</a>
-    </footer>
   );
 }
 
