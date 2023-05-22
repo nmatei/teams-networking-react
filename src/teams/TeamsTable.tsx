@@ -193,10 +193,13 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
       team: getEmptyTeam()
     };
 
-    const originalSave = this.save;
-    this.save = async () => {
-      originalSave.apply(this);
-    };
+    // const originalSave = this.save;
+    // this.save = async () => {
+    //   originalSave.apply(this);
+    // };
+    this.save = this.save.bind(this);
+    this.deleteTeam = this.deleteTeam.bind(this);
+    this.inputChange = this.inputChange.bind(this);
   }
 
   componentDidMount(): void {
@@ -275,9 +278,7 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
             team: getEmptyTeam()
           });
         }}
-        inputChange={(name, value) => {
-          this.inputChange(name, value);
-        }}
+        inputChange={this.inputChange}
       />
     );
   }
