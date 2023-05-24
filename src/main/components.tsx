@@ -3,6 +3,7 @@ import { SideMenu } from "../menu/SideMenu";
 import { TeamsTableWrapper } from "../teams/TeamsTable";
 import { Page } from "./models";
 import { KnowLanguages } from "../languages/KnowLanguages";
+import { TodosApp } from "../todos/components";
 
 type Props = {
   activePage: Page;
@@ -21,9 +22,9 @@ export function ContentWrapper(props: Props & Actions) {
         <div className="page" style={{ display: page === "home" ? "block" : "" }}>
           HOME content...
         </div>
-        <div className="page" style={{ display: page === "skills" ? "block" : "" }}>
-          <h2>Skills & Endorcements</h2>
-          <ul></ul>
+        <div className="page" style={{ display: page === "todos" ? "block" : "" }}>
+          <h2>TODO List</h2>
+          <TodosApp />
         </div>
         <div className="page" style={{ display: page === "teams" ? "block" : "" }}>
           <input
