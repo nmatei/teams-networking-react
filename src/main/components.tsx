@@ -1,30 +1,30 @@
 import { useState } from "react";
 import { SideMenu } from "../menu/SideMenu";
 import { TeamsTableWrapper } from "../teams/TeamsTable";
+import { Page } from "./models";
 
-export function ContentWrapper() {
-  //let search = "JS";
-  const [search, setSearch] = useState("JS");
+type Props = {
+  activePage: Page;
+};
+type Actions = {};
 
-  // setTimeout(() => {
-  //   //search = "React";
-  //   setSearch("React");
-  // }, 5000);
+export function ContentWrapper(props: Props & Actions) {
+  const [search, setSearch] = useState("");
 
-  //console.warn("ContentWrapper.render");
+  const page = props.activePage;
 
   return (
     <section id="content">
       <SideMenu />
       <div id="main">
-        <div className="page" id="home">
+        <div className="page" style={{ display: page === "home" ? "block" : "" }}>
           HOME content...
         </div>
-        <div className="page" id="skills">
+        <div className="page" style={{ display: page === "skills" ? "block" : "" }}>
           <h2>Skills & Endorcements</h2>
           <ul></ul>
         </div>
-        <div className="page" id="teams" style={{ display: "block" }}>
+        <div className="page" style={{ display: page === "teams" ? "block" : "" }}>
           <input
             type="search"
             placeholder="Search"
@@ -36,7 +36,7 @@ export function ContentWrapper() {
           <span>🔍</span>
           <TeamsTableWrapper search={search} />
         </div>
-        <div className="page" id="languages">
+        <div className="page" style={{ display: page === "languages" ? "block" : "" }}>
           Languages content...
         </div>
       </div>

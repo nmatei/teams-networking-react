@@ -18,7 +18,7 @@ type Actions = {
 };
 
 export function TeamsTable(props: Props & Actions) {
-  console.debug("props", props);
+  //console.debug("props", props);
   return (
     <form
       id="editForm"
