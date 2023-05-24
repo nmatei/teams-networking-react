@@ -2,6 +2,7 @@ import { useState } from "react";
 import { SideMenu } from "../menu/SideMenu";
 import { TeamsTableWrapper } from "../teams/TeamsTable";
 import { Page } from "./models";
+import { KnowLanguages } from "../languages/KnowLanguages";
 
 type Props = {
   activePage: Page;
@@ -37,7 +38,7 @@ export function ContentWrapper(props: Props & Actions) {
           <TeamsTableWrapper search={search} />
         </div>
         <div className="page" style={{ display: page === "languages" ? "block" : "" }}>
-          Languages content...
+          <KnowLanguages />
         </div>
       </div>
     </section>
