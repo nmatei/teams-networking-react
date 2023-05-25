@@ -2,6 +2,10 @@ import selfie from "../images/seflie.jpg";
 import MainMenu from "../menu/MainMenu";
 
 export default function AppHeader() {
+  let active = "teams";
+
+  console.warn("render AppHeader");
+
   return (
     <header>
       <div id="header-wrapper">
@@ -13,7 +17,13 @@ export default function AppHeader() {
           <h2 id="job-title">Trainer @ FastTrackIT & Udemy</h2>
         </div>
       </div>
-      <MainMenu active="teams" />
+      <MainMenu
+        active={active}
+        setActive={page => {
+          console.warn("active", page);
+          active = page;
+        }}
+      />
     </header>
   );
 }
