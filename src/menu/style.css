@@ -1,0 +1,29 @@
+.menu-bar {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #0798ab;
+  color: #fff;
+}
+.menu-bar li {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+.menu-bar a {
+  text-decoration: none;
+  padding: 5px 15px 5px 15px;
+  margin: 4px 0;
+  color: #fff;
+  display: inline-block;
+  border-radius: 0.2em;
+  transition: 0.5s;
+}
+.menu-bar a:visited {
+  color: #fff;
+}
+.menu-bar a:hover,
+.menu-bar a.active {
+  background-color: #057988;
+  color: #fff;
+}

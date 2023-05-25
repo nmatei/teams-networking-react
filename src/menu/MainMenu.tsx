@@ -1,10 +1,12 @@
+import "./style.css";
+
 type Props = {
   active: string;
 };
 
 export default function MainMenu(props: Props) {
   return (
-    <ul id="top-menu-bar">
+    <ul className="menu-bar">
       <li>
         <a href="#" data-page="home" className={props.active === "home" ? "active" : ""}>
           Home
