@@ -13,7 +13,7 @@ export default function AppHeader() {
           <h2 id="job-title">Trainer @ FastTrackIT & Udemy</h2>
         </div>
       </div>
-      <MainMenu />
+      <MainMenu active="teams" />
     </header>
   );
 }

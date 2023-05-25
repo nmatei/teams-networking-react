@@ -99,15 +99,5 @@ export function TeamsTableWrapper() {
       url: "https://github.com/nmatei/teams-networking-react"
     }
   ];
-  return (
-    <>
-      <TeamsTable teams={[]} loading={true} />
-      <hr />
-      <TeamsTable teams={[]} loading={false} />
-      <hr />
-      <TeamsTable teams={teams} loading={true} />
-      <hr />
-      <TeamsTable teams={teams} loading={false} />
-    </>
-  );
+  return <TeamsTable teams={teams} loading={false} />;
 }
