@@ -1,4 +1,5 @@
 import { SideMenu } from "../menu/SideMenu";
+import { TeamsTable } from "../teams/TeamsTable";
 import { KnowLanguagesTable } from "./KnowLanguagesTable";
 
 export function ContentWrapper() {
@@ -28,7 +29,10 @@ export function ContentWrapper() {
 
         <div className="page" id="teams" style={{ display: "block" }}>
           <h2>Teams</h2>
-          <p>This are the projects I've been working on...</p>
+          <div style={{ padding: "5px 0" }}>
+            <input type="search" name="search" id="search" placeholder="Search" />
+          </div>
+          <TeamsTable />
         </div>
 
         <div className="page" id="languages">
