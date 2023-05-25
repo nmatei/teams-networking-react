@@ -1,10 +1,11 @@
+import { useState } from "react";
 import selfie from "../images/seflie.jpg";
 import MainMenu from "../menu/MainMenu";
 
 export default function AppHeader() {
-  let active = "teams";
+  const [active, setActive] = useState("teams");
 
-  console.warn("render AppHeader");
+  //console.warn("render AppHeader", active);
 
   return (
     <header>
@@ -13,7 +14,7 @@ export default function AppHeader() {
           <img src={selfie} alt="my picture" height="100" />
         </div>
         <div id="header-info">
-          <h1>Matei Nicolae</h1>
+          <h1>Matei Nicolae : {active}</h1>
           <h2 id="job-title">Trainer @ FastTrackIT & Udemy</h2>
         </div>
       </div>
@@ -21,7 +22,7 @@ export default function AppHeader() {
         active={active}
         setActive={page => {
           console.warn("active", page);
-          active = page;
+          setActive(page);
         }}
       />
     </header>

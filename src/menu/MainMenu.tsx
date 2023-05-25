@@ -2,10 +2,12 @@ import "./style.css";
 
 type Props = {
   active: string;
+};
+type Actions = {
   setActive(active: string): void;
 };
 
-export default function MainMenu(props: Props) {
+export default function MainMenu(props: Props & Actions) {
   return (
     <ul className="menu-bar">
       <li>
