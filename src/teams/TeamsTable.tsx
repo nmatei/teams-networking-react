@@ -1,5 +1,5 @@
 import React from "react";
-import { loadTeamsRequest } from "./middleware";
+import { deleteTeamRequest, loadTeamsRequest } from "./middleware";
 
 type Team = {
   id: string;
@@ -13,7 +13,13 @@ type Props = {
   teams: Team[];
 };
 
-function TeamRow({ id, promotion, members, name, url }: Team) {
+type RowProps = {
+  team: Team;
+  deleteTeam(id: string): void;
+};
+
+function TeamRow(props: RowProps) {
+  const { id, promotion, members, name, url } = props.team;
   const displayUrl = url.startsWith("https://github.com/") ? url.substring(19) : url;
   return (
     <tr>
@@ -32,7 +38,13 @@ function TeamRow({ id, promotion, members, name, url }: Team) {
         <button type="button" className="action-btn edit-btn">
           &#9998;
         </button>
-        <button type="button" className="action-btn remove-btn">
+        <button
+          type="button"
+          className="action-btn remove-btn"
+          onClick={() => {
+            props.deleteTeam(id);
+          }}
+        >
           ♻
         </button>
       </td>
@@ -70,11 +82,11 @@ export function TeamsTable(props: Props) {
           {props.teams.map(team => (
             <TeamRow
               key={team.id}
-              id={team.id}
-              promotion={team.promotion}
-              members={team.members}
-              name={team.name}
-              url={team.url}
+              team={team}
+              deleteTeam={function (id) {
+                console.warn("pls remove %o team", id);
+                deleteTeamRequest(id);
+              }}
             />
           ))}
         </tbody>
