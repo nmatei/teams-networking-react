@@ -11,10 +11,12 @@ type Team = {
 
 type RowProps = {
   team: Team;
+};
+type RowActions = {
   deleteTeam(id: string): void;
 };
 
-function TeamRow(props: RowProps) {
+function TeamRow(props: RowProps & RowActions) {
   const { id, promotion, members, name, url } = props.team;
   const displayUrl = url.startsWith("https://github.com/") ? url.substring(19) : url;
   return (
@@ -51,10 +53,12 @@ function TeamRow(props: RowProps) {
 type Props = {
   loading: boolean;
   teams: Team[];
+};
+type Actions = {
   deleteTeam(id: string): void;
 };
 
-export function TeamsTable(props: Props) {
+export function TeamsTable(props: Props & Actions) {
   return (
     <form id="teamsForm" action="" method="get" className={props.loading ? "loading-mask" : ""}>
       <table id="teamsTable">
