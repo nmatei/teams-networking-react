@@ -33,8 +33,24 @@ function AppHeader() {
   );
 }
 
+function Toolbar() {
+  return (
+    <div className="tbar">
+      <button id="removeSelected">❌ Remove selected</button>
+      <div className="tfill"></div>
+      <input type="search" name="search" id="search" placeholder="Search" />
+      <label htmlFor="search">🔎</label>
+    </div>
+  );
+}
+
 function ContentWrapper() {
-  return <section id="main">...</section>;
+  return (
+    <section id="main">
+      <Toolbar />
+      TODO table...
+    </section>
+  );
 }
 
 function AppFooter() {
