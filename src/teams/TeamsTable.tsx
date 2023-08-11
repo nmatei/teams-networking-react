@@ -10,7 +10,13 @@ type Team = {
   createdBy?: string;
 };
 
-function TeamRow(props: { team: Team }) {
+type TeamRowProps = {
+  team: Team;
+  //deleteTeam: (id: string) => void
+  deleteTeam(id: string): void;
+};
+
+function TeamRow(props: TeamRowProps) {
   const team = props.team;
   // const id = team.id;
   // const url = team.url;
@@ -43,9 +49,7 @@ function TeamRow(props: { team: Team }) {
           type="button"
           className="action-btn delete-btn"
           onClick={async () => {
-            console.warn("delete", id);
-            await deleteTeamRequest(id);
-            window.location.reload();
+            props.deleteTeam(id);
           }}
         >
           ♻
@@ -88,7 +92,16 @@ export function TeamsTable(props: Props) {
         </thead>
         <tbody>
           {props.teams.map(team => (
-            <TeamRow key={team.id} team={team} />
+            <TeamRow
+              key={team.id}
+              team={team}
+              deleteTeam={id => {
+                console.warn("pls remove %o", id);
+                // console.warn("delete", id);
+                // await deleteTeamRequest(id);
+                // window.location.reload();
+              }}
+            />
           ))}
         </tbody>
         <tfoot>
