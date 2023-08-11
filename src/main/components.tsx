@@ -1,4 +1,4 @@
-import { TeamsTable } from "../teams/TeamsTable";
+import { TeamsTableWrapper } from "../teams/TeamsTable";
 
 const Toolbar = () => (
   <div className="tbar">
@@ -13,9 +13,7 @@ export function ContentWrapper() {
   return (
     <section id="main">
       <Toolbar />
-      <TeamsTable loading={false} />
-      <br />
-      <TeamsTable loading={true} />
+      <TeamsTableWrapper />
     </section>
   );
 }
