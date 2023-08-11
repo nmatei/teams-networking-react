@@ -161,13 +161,12 @@ export class TeamsTableWrapper extends React.Component<WrapperProps, State> {
   }
 
   render() {
-    console.info("render", this.state.loading);
+    console.info("render");
     return (
       <TeamsTable
         loading={this.state.loading}
         teams={this.state.teams}
         deleteTeam={async id => {
-          console.warn("aici trebuie sa sterg echipa %o", id);
           this.setState({ loading: true });
           await deleteTeamRequest(id);
           this.loadTeams();
