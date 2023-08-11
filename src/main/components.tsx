@@ -13,7 +13,9 @@ export function ContentWrapper() {
   return (
     <section id="main">
       <Toolbar />
-      <TeamsTable />
+      <TeamsTable loading={false} />
+      <br />
+      <TeamsTable loading={true} />
     </section>
   );
 }
