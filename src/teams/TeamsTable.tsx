@@ -1,5 +1,5 @@
 import React from "react";
-import { loadTeamsRequest } from "./middleware";
+import { deleteTeamRequest, loadTeamsRequest } from "./middleware";
 
 type Team = {
   id: string;
@@ -30,10 +30,24 @@ function TeamRow(props: { team: Team }) {
         </a>
       </td>
       <td>
-        <button type="button" data-id="${id}" className="action-btn edit-btn">
+        <button
+          type="button"
+          className="action-btn edit-btn"
+          onClick={() => {
+            console.warn("edit", id, team);
+          }}
+        >
           &#9998;
         </button>
-        <button type="button" data-id="${id}" className="action-btn delete-btn">
+        <button
+          type="button"
+          className="action-btn delete-btn"
+          onClick={async () => {
+            console.warn("delete", id);
+            await deleteTeamRequest(id);
+            window.location.reload();
+          }}
+        >
           ♻
         </button>
       </td>
