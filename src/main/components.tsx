@@ -2,7 +2,7 @@ import { TeamsTableWrapper } from "../teams/TeamsTable";
 
 export function ContentWrapper() {
   console.warn("wrapper.render");
-  let search = "react";
+  let search = "";
 
   return (
     <div id="main">
