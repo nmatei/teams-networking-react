@@ -13,7 +13,7 @@ export function ContentWrapper() {
   return (
     <section id="main">
       <Toolbar />
-      <TeamsTableWrapper />
+      <TeamsTableWrapper search="" />
     </section>
   );
 }
