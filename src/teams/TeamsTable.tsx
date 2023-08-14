@@ -1,7 +1,6 @@
 import React from "react";
 import { createTeamRequest, deleteTeamRequest, loadTeamsRequest, updateTeamRequest } from "./middleware";
 import { Team } from "./models";
-import { async } from "q";
 
 type RowProps = {
   team: Team;
