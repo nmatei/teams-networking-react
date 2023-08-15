@@ -384,6 +384,7 @@ function filterElements<T extends {}>(elements: T[], search: string) {
       if (key !== "id") {
         return typeof value === "string" ? value.toLowerCase().includes(search) : value === search;
       }
+      return false;
     });
   });
 }
